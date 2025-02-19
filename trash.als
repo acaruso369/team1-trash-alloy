@@ -34,14 +34,15 @@ pred permDelete [f: File] {
 }
 
 pred directDelete [f: File] {
-  not (f in Trash)   // guard
+  f not in Trash     // guard
   Trash' = Trash     // no change in Trash
-  File' = File - f   // remove from File
+  File' = File - f   // remove file from File
 }
 
 pred duplicateFile [f: File] {
   some f             // guard
   some f' : File' | f' not in File and File' = File + f'
+  Trash' = Trash     // Frame condition for Trash
 }
 
 run example {}
