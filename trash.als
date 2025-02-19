@@ -41,7 +41,8 @@ pred directDelete [f: File] {
 
 pred duplicateFile [f: File] {
   some f             // guard
-  some f' : File' | f' not in File and File' = File + f'
+  lone g : File' | g not in File and g = f and File' = File + g 
+  f' = f and f in File' //original unchanged
   Trash' = Trash     // Frame condition for Trash
 }
 
