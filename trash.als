@@ -27,4 +27,10 @@ fact trans {
   always (empty or (some f : File | delete[f] or restore[f]))
 }
 
+pred deleteTrash [f: File] {
+  f in Trash         // guard
+  Trash' = Trash - f // effect on Trash
+  File' = File - f   // effect on File
+}
+
 run example {}
