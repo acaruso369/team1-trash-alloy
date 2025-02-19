@@ -33,4 +33,10 @@ pred deleteTrash [f: File] {
   File' = File - f   // effect on File
 }
 
+pred directDelete [f: File] {
+  not (f in Trash)   // guard
+  Trash' = Trash     // no change in Trash
+  File' = File - f   // remove from File
+}
+
 run example {}
