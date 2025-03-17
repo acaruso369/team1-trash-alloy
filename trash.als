@@ -27,23 +27,4 @@ fact trans {
   always (empty or (some f : File | delete[f] or restore[f]))
 }
 
-pred permDelete [f: File] {
-  f in Trash         // guard
-  Trash' = Trash - f // effect on Trash
-  File' = File - f   // effect on File
-}
 
-pred directDelete [f: File] {
-  f not in Trash     // guard
-  Trash' = Trash     // no change in Trash
-  File' = File - f   // remove file from File
-}
-
-pred duplicateFile [f: File] {
-  some f             // guard
-  lone g : File' | g not in File and g = f and File' = File + g 
-  f' = f and f in File' //original unchanged
-  Trash' = Trash     // Frame condition for Trash
-}
-
-run example {}
