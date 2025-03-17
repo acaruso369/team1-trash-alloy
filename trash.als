@@ -27,4 +27,4 @@ fact trans {
   always (empty or (some f : File | delete[f] or restore[f]))
 }
 
-run example {}
+
