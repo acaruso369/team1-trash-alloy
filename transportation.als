@@ -10,7 +10,7 @@ abstract sig Places {
     materialsAt: set Materials
 }
 
-sig Warehouse, Dwellings, Workplaces extends Places {}
+ sig Warehouse, Dwellings, Workplaces extends Places {}
 
 sig Job {
     location: one Places,
